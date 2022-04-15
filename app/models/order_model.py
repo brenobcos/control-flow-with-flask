@@ -16,4 +16,4 @@ class Order(db.Model):
 
     customer_id = Column(Integer, ForeignKey("users.user_id"), nullable=False)
 
-    curstomer = relationship("User", back_populates="orders")
+    customer = relationship("User", back_populates="orders")
