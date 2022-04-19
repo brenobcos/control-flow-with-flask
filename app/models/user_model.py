@@ -12,7 +12,7 @@ class User(db.Model):
     children: int
     married: bool
     account_balance: float
-    orders: list
+    # orders: list
 
     __tablename__ = "users"
 
@@ -21,6 +21,6 @@ class User(db.Model):
     birthdate = Column(Date, nullable=False)
     children = Column(Integer, default=0)
     married = Column(Boolean, default=False)
-    account_balance = Column(Numeric(asdecimal=True))
+    account_balance = Column(Numeric(asdecimal=False))
 
     orders = relationship("Order", back_populates="customer", uselist=True)
