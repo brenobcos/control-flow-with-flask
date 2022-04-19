@@ -8,6 +8,7 @@ from dataclasses import dataclass
 class Order(db.Model):
     order_id: int
     order_date: str
+    # products = list
 
     __tablename__ = "orders"
 
@@ -17,3 +18,5 @@ class Order(db.Model):
     customer_id = Column(Integer, ForeignKey("users.user_id"), nullable=False)
 
     customer = relationship("User", back_populates="orders")
+
+    products = relationship("Product", secondary="orders_products")
