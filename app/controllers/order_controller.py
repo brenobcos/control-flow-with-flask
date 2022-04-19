@@ -1,4 +1,9 @@
+from dataclasses import asdict
 from http import HTTPStatus
+
+from flask import jsonify, url_for
+from ipdb import set_trace
+from sqlalchemy.orm import Query, Session
 
 from app.configs.database import db
 from app.exc import IdNotFoundError
@@ -6,10 +11,6 @@ from app.models.order_model import Order
 from app.models.order_product_model import OrderProduct
 from app.models.product_model import Product
 from app.services.query_service import get_by_id
-from flask import jsonify, url_for
-from ipdb import set_trace
-from sqlalchemy.orm import Query, Session
-from dataclasses import asdict
 
 
 def retrieve_by_id(order_id: int):

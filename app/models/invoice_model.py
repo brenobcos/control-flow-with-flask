@@ -1,9 +1,10 @@
 from dataclasses import dataclass
 from datetime import datetime as dt
 
-from app.configs.database import db
-from sqlalchemy.orm import relationship, backref
 from sqlalchemy import Column, DateTime, ForeignKey, Integer, String
+from sqlalchemy.orm import backref, relationship
+
+from app.configs.database import db
 
 
 @dataclass

@@ -1,9 +1,10 @@
 
 
 
-from flask import Flask, Blueprint
-from .user_route import bp as bp_user
+from flask import Blueprint, Flask
+
 from .order_route import bp as bp_order
+from .user_route import bp as bp_user
 
 bp_api = Blueprint("api", __name__, url_prefix="/api")
 

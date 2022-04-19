@@ -1,7 +1,9 @@
-from app.configs.database import db
+from dataclasses import dataclass
+
 from sqlalchemy import Column, DateTime, ForeignKey, Integer
 from sqlalchemy.orm import relationship
-from dataclasses import dataclass
+
+from app.configs.database import db
 
 
 @dataclass

@@ -1,6 +1,8 @@
-from app.configs.database import db
-from sqlalchemy import Column, Integer, Numeric, String
 from dataclasses import dataclass
+
+from sqlalchemy import Column, Integer, Numeric, String
+
+from app.configs.database import db
 
 
 @dataclass

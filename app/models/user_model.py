@@ -1,7 +1,10 @@
-from app.configs.database import db
-from sqlalchemy import Boolean, Column, BigInteger, Integer, Numeric, String, Date
-from sqlalchemy.orm import relationship
 from dataclasses import dataclass
+
+from sqlalchemy import (BigInteger, Boolean, Column, Date, Integer, Numeric,
+                        String)
+from sqlalchemy.orm import relationship
+
+from app.configs.database import db
 
 
 @dataclass

@@ -1,5 +1,8 @@
 from flask import Blueprint
-from app.controllers.user_controller import retrieve_by_id, retrieve_user_orders, retrieve_user_invoices
+
+from app.controllers.user_controller import (retrieve_by_id,
+                                             retrieve_user_invoices,
+                                             retrieve_user_orders)
 
 bp = Blueprint("users", __name__, url_prefix="/users")
 

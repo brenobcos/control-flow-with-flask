@@ -1,5 +1,6 @@
 from flask import Blueprint
-from app.controllers.order_controller import retrieve_by_id, order_products
+
+from app.controllers.order_controller import order_products, retrieve_by_id
 
 bp = Blueprint("orders", __name__, url_prefix="/orders")
 

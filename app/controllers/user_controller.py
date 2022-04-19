@@ -1,10 +1,11 @@
 from dataclasses import asdict
 from http import HTTPStatus
 
+from flask import jsonify, url_for
+
 from app.exc import IdNotFoundError
 from app.models.user_model import User
 from app.services.query_service import get_by_id
-from flask import jsonify, url_for
 
 
 def retrieve_by_id(user_id: int):
