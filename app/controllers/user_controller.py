@@ -1,11 +1,41 @@
 from dataclasses import asdict
 from http import HTTPStatus
 
-from flask import jsonify, url_for
+from flask import jsonify, request, url_for
 
-from app.exc import IdNotFoundError
+from app.exc import (
+    IdNotFoundError,
+    InvalidEmailError,
+    InvalidDateFormatError,
+    UnderageUserError,
+)
 from app.models.user_model import User
 from app.services.query_service import get_by_id
+from app.configs.database import db
+from sqlalchemy.exc import IntegrityError
+from psycopg2.errors import UniqueViolation
+
+
+def create_user():
+    data = request.get_json()
+
+    try:
+        user = User(**data)
+    except InvalidEmailError:
+        return {"error": "email must contain `churros`"}, HTTPStatus.BAD_REQUEST
+    except InvalidDateFormatError:
+        return {"error": "date format must be `YYYY/MM/DD`"}, HTTPStatus.BAD_REQUEST
+    except UnderageUserError:
+        return {"error": "user must be over 18 years old"}, HTTPStatus.BAD_REQUEST
+
+    try:
+        db.session.add(user)
+        db.session.commit()
+    except IntegrityError as e:
+        if type(e.orig) == UniqueViolation:
+            return {"error": "this email already exists"}, HTTPStatus.CONFLICT
+
+    return jsonify(user), HTTPStatus.CREATED
 
 
 def retrieve_by_id(user_id: int):
